@@ -1,0 +1,91 @@
+body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background: #1f2a44;
+}
+
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    opacity: 0.9;
+}
+
+.welcome-message {
+    position: absolute;
+    z-index: 1;
+    text-align: center;
+    line-height: 1.1;
+}
+
+.welcome-message p {
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+}
+
+.welcome-message p:first-child {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 16px;
+    color: #ffffffa9;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+
+#name {
+    font-family: 'Century Gothic', sans-serif;
+    font-size: 60px;
+    font-weight: bold;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 1px #0011ff;
+    text-shadow: none;
+    animation: textReveal 2s ease-in-out forwards 2s;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+
+
+
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes textReveal {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+.welcome-message p, #name {
+    animation: smoothEntrance 2s ease-in-out forwards;
+}
+
+@keyframes smoothEntrance {
+    0% {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
