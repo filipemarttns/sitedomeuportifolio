@@ -1,31 +1,58 @@
-body {
+html, body {
     margin: 0;
-    height: 100vh;
-    overflow: hidden;
+    padding: 0;
+    height: 100%;
     font-family: Arial, sans-serif;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    background: #000000;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+canvas {
+    position: absolute; /* alterado de fixed para absolute */
+    top: 0;
+    left: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.9;
+    pointer-events: none;
+}
+
+.section {
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    background: #1f2a44;
+    z-index: 1;
+    background: #050505;
 }
 
-canvas {
+.section::after {
+    content: "";
     position: absolute;
-    top: 0;
+    bottom: 0;
     left: 0;
-    z-index: 0;
-    opacity: 0.9;
+    height: 100px;
+    width: 100%;
+    background: linear-gradient(to bottom, rgb(0, 0, 0) 0%, rrgb(0, 0, 0)100%);
+    z-index: 2;
+    pointer-events: none;
 }
 
 .welcome-message {
-    position: absolute;
-    z-index: 1;
     text-align: center;
     line-height: 1.3;
     animation: fadeInText 1.5s ease-out forwards 0.5s;
     opacity: 0;
     transform: scale(0.8);
+    z-index: 2;
 }
 
 .welcome-message p {
@@ -36,7 +63,7 @@ canvas {
 
 .welcome-message p:first-child {
     font-family: 'Press Start 2P', monospace;
-    font-size: 20px; /* aumentado */
+    font-size: 20px;
     color: #ffffffa9;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -45,18 +72,13 @@ canvas {
 
 #name {
     font-family: 'Century Gothic', sans-serif;
-    font-size: clamp(48px, 7vw, 80px); /* aumentado */
+    font-size: clamp(48px, 7vw, 80px);
     font-weight: bold;
     color: transparent;
     -webkit-text-fill-color: transparent;
     -webkit-text-stroke: 1px #0011ff;
-    text-shadow: none;
-    white-space: nowrap;
-    overflow: hidden;
     animation: preExplodeTremble 3s ease-in-out forwards, explodeBounce 0.8s ease-out 3s;
 }
-
-/* Social Icons */
 
 .social-icons {
     margin-top: 30px;
@@ -69,17 +91,24 @@ canvas {
 }
 
 .social-icons a img {
-    width: 48px; /* aumentado */
+    width: 48px;
     height: 48px;
     transition: transform 0.3s ease;
-    filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.5));
+    filter: drop-shadow(0 0 3px rgb(0, 0, 0));
 }
 
 .social-icons a:hover img {
     transform: scale(1.4);
 }
 
-/* Animations */
+.scroll-section {
+    height: 100vh;
+    background: #000000;
+    position: relative;
+    z-index: 1;
+}
+
+/* Animações */
 
 @keyframes fadeInText {
     0% {
@@ -93,37 +122,16 @@ canvas {
 }
 
 @keyframes preExplodeTremble {
-    0% {
-        transform: translateX(0);
-    }
-    20% {
-        transform: translateX(-2px);
-    }
-    40% {
-        transform: translateX(2px);
-    }
-    60% {
-        transform: translateX(-3px);
-    }
-    80% {
-        transform: translateX(3px);
-    }
-    100% {
-        transform: translateX(0);
-    }
+    0% { transform: translateX(0); }
+    20% { transform: translateX(-2px); }
+    40% { transform: translateX(2px); }
+    60% { transform: translateX(-3px); }
+    80% { transform: translateX(3px); }
+    100% { transform: translateX(0); }
 }
 
 @keyframes explodeBounce {
-    0% {
-        transform: scale(1);
-        opacity: 1;
-    }
-    50% {
-        transform: scale(1.15);
-        opacity: 0.7;
-    }
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.15); opacity: 0.7; }
+    100% { transform: scale(1); opacity: 1; }
 }

@@ -59,10 +59,10 @@ function updateParticles() {
       p.x += p.vx;
       p.y += p.vy;
 
-      // Remove se saiu da tela
+      const extraHeight = window.innerHeight * 1.5;
       if (
         p.x < 0 || p.x > canvas.width ||
-        p.y < 0 || p.y > canvas.height
+        p.y - p.radius > extraHeight
       ) {
         particles.splice(i, 1);
         continue;
@@ -86,9 +86,19 @@ function drawParticles() {
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   for (const p of particles) {
+    // Opacidade baseada na posição Y da partícula no canvas
+    const fadeStart = canvas.height * 0.7;
+    const fadeEnd = canvas.height * 1.0;
+    let opacity = 1;
+
+    if (p.y > fadeStart) {
+      opacity = 1 - ((p.y - fadeStart) / (fadeEnd - fadeStart));
+      opacity = Math.max(0, Math.min(1, opacity));
+    }
+
     const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.radius * 4);
-    gradient.addColorStop(0, "rgba(0,17,255,1)");
-    gradient.addColorStop(1, "rgba(0,17,255,0.1)");
+    gradient.addColorStop(0, `rgba(0,17,255,${opacity})`);
+    gradient.addColorStop(1, `rgba(0,17,255,0)`);
 
     ctx.fillStyle = gradient;
     ctx.beginPath();
@@ -96,6 +106,8 @@ function drawParticles() {
     ctx.fill();
   }
 }
+
+
 
 function animate() {
   const currentTime = Date.now();
