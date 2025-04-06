@@ -144,3 +144,21 @@ document.querySelectorAll('.about-text > *').forEach(el => {
   el.classList.add('reveal');
   observer.observe(el);
 });
+const imageList = ["projeto1.png", "projeto2.png"];
+let currentIndex = 0;
+
+document.getElementById("nextImageBtn").addEventListener("click", () => {
+    const image = document.getElementById("projectImage");
+    image.classList.add("fade-out");
+
+    setTimeout(() => {
+        currentIndex = (currentIndex + 1) % imageList.length;
+        image.src = imageList[currentIndex];
+        image.classList.remove("fade-out");
+        image.classList.add("fade-in");
+    }, 300);
+
+    setTimeout(() => {
+        image.classList.remove("fade-in");
+    }, 600);
+});

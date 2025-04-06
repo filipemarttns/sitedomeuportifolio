@@ -107,37 +107,85 @@ canvas {
     position: relative;
     z-index: 1;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
-    padding: 90px 50px 30px 700px; /* só reduz um pouco pra esquerda */
+    padding: 60px 50px;
     gap: 100px;
 }
 
+.about-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    width: 100%;
+}
+
 .about-text {
-    max-width: 600px; /*largura*/
+    max-width: 600px;
     color: #fff;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     animation: fadeInText 1.5s ease-out forwards;
 }
 
 .about-text h2 {
-    font-size: 36px;
-    margin-bottom: 50px;
+    font-size: 30px;
+    margin-bottom: 30px;
     font-weight: bold;
     color: #0011ff;
 }
 
 .about-text p {
-    font-size: 23px;
+    font-size: 18px;
     line-height: 1.8;
     color: #ddd;
+}
+
+.image-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-image {
+    max-width: 900px;
+    border-radius: 20px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+#nextImageBtn {
+    position: absolute;
+    right: -90px;
+    background-color: transparent;
+    color: white;
+    font-size: 32px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+#nextImageBtn:hover {
+    transform: scale(1.3);
+    color: #0011ff;
+}
+
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.fade-in {
+    opacity: 1;
+    transition: opacity 0.3s ease;
 }
 
 /* Animações */
 @keyframes fadeInText {
     0% {
         opacity: 0;
-        transform: scale(0.8) translateY(-20px);
+        transform: scale(0.5) translateY(-20px);
     }
     100% {
         opacity: 1;
@@ -159,6 +207,7 @@ canvas {
     50% { transform: scale(1.15); opacity: 0.7; }
     100% { transform: scale(1); opacity: 1; }
 }
+
 .reveal {
     opacity: 0;
     transform: translateX(-60px);
