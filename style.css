@@ -14,7 +14,7 @@ body::-webkit-scrollbar {
 }
 
 canvas {
-    position: absolute; /* alterado de fixed para absolute */
+    position: absolute;
     top: 0;
     left: 0;
     z-index: 0;
@@ -41,7 +41,7 @@ canvas {
     left: 0;
     height: 100px;
     width: 100%;
-    background: linear-gradient(to bottom, rgb(0, 0, 0) 0%, rrgb(0, 0, 0)100%);
+    background: linear-gradient(to bottom, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 100%);
     z-index: 2;
     pointer-events: none;
 }
@@ -106,10 +106,36 @@ canvas {
     background: #000000;
     position: relative;
     z-index: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 90px 50px 30px 700px; /* só reduz um pouco pra esquerda */
+    gap: 100px;
 }
 
-/* Animações */
 
+.about-text {
+    max-width: 600px; /*largura*/
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    animation: fadeInText 1.5s ease-out forwards;
+}
+
+.about-text h2 {
+    font-size: 36px;
+    margin-bottom: 50px;
+    font-weight: bold;
+    color: #0011ff;
+}
+
+.about-text p {
+    font-size: 23px;
+    line-height: 1.8;
+    color: #ddd;
+}
+
+
+/* Animações */
 @keyframes fadeInText {
     0% {
         opacity: 0;

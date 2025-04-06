@@ -73,7 +73,7 @@ function updateParticles() {
       p.angle += p.orbitSpeed;
       p.x = canvas.width / 2 + Math.cos(p.angle) * p.orbitRadius;
       p.y = canvas.height / 2 + Math.sin(p.angle) * p.orbitRadius;
-    }
+    } 
 
     p.life -= 1;
     if (p.life <= 0) {
