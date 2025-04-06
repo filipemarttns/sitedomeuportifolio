@@ -23,6 +23,9 @@ canvas {
     z-index: 1;
     text-align: center;
     line-height: 1.1;
+    animation: fadeInText 1.5s ease-out forwards 0.5s;
+    opacity: 0;
+    transform: scale(0.8);
 }
 
 .welcome-message p {
@@ -37,55 +40,67 @@ canvas {
     color: #ffffffa9;
     text-transform: uppercase;
     letter-spacing: 1px;
+    animation: preExplodeTremble 3s ease-in-out forwards;
 }
-
 
 #name {
     font-family: 'Century Gothic', sans-serif;
-    font-size: 60px;
+    font-size: clamp(32px, 6vw, 64px);
     font-weight: bold;
     color: transparent;
     -webkit-text-fill-color: transparent;
     -webkit-text-stroke: 1px #0011ff;
     text-shadow: none;
-    animation: textReveal 2s ease-in-out forwards 2s;
     white-space: nowrap;
     overflow: hidden;
+    animation: preExplodeTremble 3s ease-in-out forwards, explodeBounce 0.8s ease-out 3s;
 }
 
+/* Animations */
 
-
-
-
-@keyframes fadeIn {
+@keyframes fadeInText {
     0% {
         opacity: 0;
+        transform: scale(0.8) translateY(-20px);
     }
     100% {
         opacity: 1;
+        transform: scale(1) translateY(0);
     }
 }
 
-@keyframes textReveal {
+@keyframes preExplodeTremble {
     0% {
-        width: 0;
+        transform: translateX(0);
+    }
+    20% {
+        transform: translateX(-2px);
+    }
+    40% {
+        transform: translateX(2px);
+    }
+    60% {
+        transform: translateX(-3px);
+    }
+    80% {
+        transform: translateX(3px);
     }
     100% {
-        width: 100%;
+        transform: translateX(0);
     }
 }
 
-.welcome-message p, #name {
-    animation: smoothEntrance 2s ease-in-out forwards;
-}
-
-@keyframes smoothEntrance {
+@keyframes explodeBounce {
     0% {
-        transform: translateY(-50px);
-        opacity: 0;
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.15);
+        opacity: 0.7;
     }
     100% {
-        transform: translateY(0);
+        transform: scale(1);
         opacity: 1;
     }
 }
