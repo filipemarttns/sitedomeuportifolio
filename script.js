@@ -59,14 +59,15 @@ function updateParticles() {
       p.x += p.vx;
       p.y += p.vy;
 
-      const extraHeight = window.innerHeight * 1.5;
+      const fadeLimit = window.innerHeight * 1.2;
       if (
         p.x < 0 || p.x > canvas.width ||
-        p.y - p.radius > extraHeight
+        p.y - p.radius > fadeLimit
       ) {
         particles.splice(i, 1);
         continue;
       }
+
 
     } else {
       p.angle += p.orbitSpeed;
@@ -82,7 +83,7 @@ function updateParticles() {
 }
 
 function drawParticles() {
-  ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
+  ctx.fillStyle = "rgb(0, 0, 0)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   for (const p of particles) {
