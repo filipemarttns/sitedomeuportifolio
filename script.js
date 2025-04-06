@@ -130,3 +130,17 @@ window.addEventListener('resize', () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 });
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+      if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+      } else {
+          entry.target.classList.remove('visible');
+      }
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.about-text > *').forEach(el => {
+  el.classList.add('reveal');
+  observer.observe(el);
+});

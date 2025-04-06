@@ -113,7 +113,6 @@ canvas {
     gap: 100px;
 }
 
-
 .about-text {
     max-width: 600px; /*largura*/
     color: #fff;
@@ -133,7 +132,6 @@ canvas {
     line-height: 1.8;
     color: #ddd;
 }
-
 
 /* Animações */
 @keyframes fadeInText {
@@ -160,4 +158,17 @@ canvas {
     0% { transform: scale(1); opacity: 1; }
     50% { transform: scale(1.15); opacity: 0.7; }
     100% { transform: scale(1); opacity: 1; }
+}
+.reveal {
+    opacity: 0;
+    transform: translateX(-60px);
+    clip-path: inset(0 10% 0 0 round 10px);
+    transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform, clip-path;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateX(0);
+    clip-path: inset(0 0 0 0 round 0px);
 }
