@@ -162,3 +162,16 @@ document.getElementById("nextImageBtn").addEventListener("click", () => {
         image.classList.remove("fade-in");
     }, 600);
 });
+const image = document.querySelector('.about-image');
+
+const imageObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            image.classList.add('image-in-view');
+        } else {
+            image.classList.remove('image-in-view');
+        }
+    });
+}, { threshold: 0.5 });
+
+imageObserver.observe(image);
